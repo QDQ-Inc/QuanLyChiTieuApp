@@ -256,29 +256,28 @@ public class ThemChiTieuActivity extends AppCompatActivity implements ChonDanhMu
                 txtSoTien.removeTextChangedListener(this);
                 try {
                     String originalString = s.toString();
-                    // Xử lý chuỗi ban đầu để loại bỏ dấu phân cách ',' (nếu có).
+
                     Long longval;
                     if (originalString.contains(",")) {
                         originalString = originalString.replaceAll(",", "");
                     }
                     longval = Long.parseLong(originalString);
 
-                    // Định dạng lại số dạng 0.000.000
                     DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
                     formatter.applyPattern("#,###,###,###");
                     String formattedString = formatter.format(longval);
 
-                    // Đặt lại văn bản sau khi đã được định dạng vào EditText
+                    //setting text after format to EditText
                     txtSoTien.setText(formattedString);
-                    txtSoTien.setSelection(txtSoTien.getText().length()); //dùng để đặt con trỏ văn bản vào cuối, giúp người dùng dễ dàng thao tác tiếp theo.
+                    txtSoTien.setSelection(txtSoTien.getText().length());
 
                     //Cập nhật thông tin số tiền còn lại
                     String sotienconlai;
                     Character dauThuChi;
-                    if (type == 2) { // Loại 2 là chi tiêu
+                    if (type == 2) {
                         sotienconlai = numberFormat(String.valueOf(Long.parseLong(viTien.getMoney()) - Long.parseLong(formattedString.replace(",", ""))));
                         dauThuChi = '-';
-                    } else {  // Loại khác là thu nhập
+                    } else {
                         sotienconlai = numberFormat(String.valueOf(Long.parseLong(viTien.getMoney()) + Long.parseLong(formattedString.replace(",", ""))));
                         dauThuChi = '+';
                     }
@@ -286,7 +285,6 @@ public class ThemChiTieuActivity extends AppCompatActivity implements ChonDanhMu
                 } catch (NumberFormatException nfe) {
                     nfe.printStackTrace();
                 }
-                // Thêm lại lắng nghe sự kiện thay đổi văn bản sau khi đã hoàn thành xử lý.
                 txtSoTien.addTextChangedListener(this);
             }
         };
@@ -300,20 +298,20 @@ public class ThemChiTieuActivity extends AppCompatActivity implements ChonDanhMu
 
     //Kiểm tra số tiền
     public static boolean isNumeric(String str) {
-        try { // Cố gắng chuyển đổi chuỗi sang kiểu long
-            Long.parseLong(str); // Nếu chuyển đổi thành công, chuỗi là một số hợp lệ
+        try {
+            Long.parseLong(str);
             return true;
-        } catch (NumberFormatException e) {  // Nếu có lỗi xảy ra (số không hợp lệ), bắt lỗi và trả về false
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
     //Định dạng số tiền
     public String numberFormat(String string) {
-        Long number = Long.parseLong(string);  // chuyển đổi chuỗi sang kiểu long
-        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);  //Định dạng số theo kiểu của Locale.US, tức là sử dụng dấu phẩy (,) để phân tách hàng nghìn
-        formatter.applyPattern("#,###,###,###");  //Mẫu #,###,###,### có nghĩa là số sẽ được định dạng với dấu phẩy phân tách mỗi ba chữ số
-        String formattedString = formatter.format(number); //Định dạng số number thành chuỗi formattedString theo mẫu đã thiết lập
-        return formattedString; //Trả về chuỗi đã được định dạng
+        Long number = Long.parseLong(string);
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        formatter.applyPattern("#,###,###,###");
+        String formattedString = formatter.format(number);
+        return formattedString;
     }
 }

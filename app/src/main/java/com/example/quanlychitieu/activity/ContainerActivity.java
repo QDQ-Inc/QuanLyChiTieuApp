@@ -67,7 +67,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
                 switch (position) {
                     case 0:
                         bnvContainer.getMenu().findItem(R.id.menuHome).setChecked(true);
-                        txtTBTitle.setText("Trang Chủ");
+                        txtTBTitle.setText("Báo cáo");
                         showButtonThemThuChi();
                         break;
                     case 1:
@@ -89,7 +89,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
                 switch (item.getItemId()) {
                     case R.id.menuHome:
                         vpContaner.setCurrentItem(0);
-                        txtTBTitle.setText("Trang Chủ");
+                        txtTBTitle.setText("Báo cáo");
                         showButtonThemThuChi();
                         break;
                     case R.id.menuThuNhap:
@@ -148,7 +148,8 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
                         btnThemThuChi.setVisibility(View.GONE);
-
+                        // Hack: Remove the listener. So it won't be executed when
+                        // any other animation on this view is executed
                         btnThemThuChi.animate().setListener(null);
                     }
                 })

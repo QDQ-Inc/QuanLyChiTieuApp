@@ -100,14 +100,12 @@ public class ViTienActivity extends AppCompatActivity {
                         appViewModel.xoaViTien(viTienChon);
                         bottomSheetDialog.dismiss();
                         Toasty.success(getApplicationContext(), "Xóa ví tiền thành công!", Toasty.LENGTH_SHORT, true).show();
-
                     } else {
                         Toasty.error(getApplicationContext(), "Lỗi, hãy thử lại!", Toasty.LENGTH_SHORT, true).show();
                         bottomSheetDialog.dismiss();
                     }
                 } else {
                     Toasty.error(getApplicationContext(),"Phải có ít nhất 1 ví tiền",Toasty.LENGTH_SHORT,true).show();
-                    bottomSheetDialog.dismiss();
                 }
             }
         });

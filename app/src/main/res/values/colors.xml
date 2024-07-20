@@ -13,6 +13,6 @@
     <color name="color_icon_checked">#3F8AE0</color>
     <color name="button_checked">#5DB075</color>
     <color name="button_uncheck">#FFFFFF</color>
-    <color name="button_success">#5DB075</color>
+    <color name="button_success">#4986CC</color>
     <color name="button_cancel">#E64646</color>
 </resources>

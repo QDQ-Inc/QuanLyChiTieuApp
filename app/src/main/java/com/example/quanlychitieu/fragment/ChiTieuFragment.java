@@ -89,7 +89,7 @@ public class ChiTieuFragment extends Fragment {
         buttonScrollToTop();
 
         appViewModel = new ViewModelProvider(this).get(AppViewModel.class);
-        // Khởi tạo các thành phần giao diện
+
         txtChuaCoGiaoDich = view.findViewById(R.id.txtChuaCoGiaoDich);
         //Recycler View Thu Chi
         rvChiTieu = view.findViewById(R.id.rvChiTieu);
@@ -118,18 +118,18 @@ public class ChiTieuFragment extends Fragment {
         xuLyThongKeSoLieuThuChi();
 
         //LiveData
-        //Chi Tiêu Full  // Quan sát dữ liệu thay đổi và cập nhật giao diện
+        //Chi Tiêu Full
         chiTieuLiveData = appViewModel.tatCaChiTieu();
         chiTieuLiveData.observe(getViewLifecycleOwner(), new Observer<List<ChiTieu>>() {
             @Override
-            public void onChanged(List<ChiTieu> chiTieuList) { // Filter chi tiêu trong ngày hiện tại
+            public void onChanged(List<ChiTieu> chiTieuList) {
                 List<ChiTieu> chiTieuHomNay = new ArrayList<>();
                 for (int i = 0; i < chiTieuList.size(); i++) {
                     ChiTieu chiTieu = chiTieuList.get(i);
                     if (chiTieu.getDate().equals(date)){
                         chiTieuHomNay.add(chiTieu);
                     }
-                }   // Cập nhật RecyclerView và BarChart
+                }
                 chiTieuAdapter.submitList(chiTieuHomNay);
                 chiTieus = chiTieuList;
                 duLieuChiTieu();
@@ -147,7 +147,7 @@ public class ChiTieuFragment extends Fragment {
                 duLieuThuNhap();
             }
         });
-        //Loại tiền tệ   // Quan sát thay đổi loại tiền tệ và cập nhật giao diện
+        //Loại tiền tệ
         loaiTienTeLiveData = appViewModel.xuatLoaiTienTe();
         loaiTienTeLiveData.observe(getActivity(), new Observer<LoaiTienTe>() {
             @Override
@@ -160,7 +160,7 @@ public class ChiTieuFragment extends Fragment {
         return view;
     }
 
-    private void xuLyThongKeSoLieuThuChi() { //Phương thức này tính toán tổng thu và tổng chi trong ngày và cập nhật TextView tương ứng
+    private void xuLyThongKeSoLieuThuChi() {
         tongChi = 0;
         tongThu = 0;
         for (int i = 0; i < chiTieus.size(); i++) {
@@ -185,7 +185,7 @@ public class ChiTieuFragment extends Fragment {
         duLieuThuNhap();
     }
 
-    private void duLieuThuNhap() { //
+    private void duLieuThuNhap() {
         giaTriThuNhap.clear();
         nhanThuNhap.clear();
         int k = 0;
