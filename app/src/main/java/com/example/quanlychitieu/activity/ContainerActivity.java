@@ -67,7 +67,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
                 switch (position) {
                     case 0:
                         bnvContainer.getMenu().findItem(R.id.menuHome).setChecked(true);
-                        txtTBTitle.setText("Báo cáo");
+                        txtTBTitle.setText("Trang Chủ");
                         showButtonThemThuChi();
                         break;
                     case 1:
@@ -89,7 +89,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
                 switch (item.getItemId()) {
                     case R.id.menuHome:
                         vpContaner.setCurrentItem(0);
-                        txtTBTitle.setText("Báo cáo");
+                        txtTBTitle.setText("Trang Chủ");
                         showButtonThemThuChi();
                         break;
                     case R.id.menuThuNhap:
